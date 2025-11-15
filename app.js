@@ -44,11 +44,24 @@ function activateSect(tab) {
     let contentId = tab.dataset.target;
     document.getElementById(contentId).classList.remove("hidden");
 
+    localStorage.setItem("activeTab" , tab.id)
+
 }
 
 sectionsTab.forEach(tab => {
     tab.addEventListener("click", () => activateSect(tab));
 });
+
+// LOAD SAVED TAB
+window.addEventListener("load" , () => {
+
+    let savedTab = localStorage.getItem("activeTab")
+    if (savedTab) {
+        let tab = document.getElementById(savedTab);
+        if (tab) activateSect(tab)
+    }
+
+})
 
 // -------------<<< Translation Logic >>>---------------
 
