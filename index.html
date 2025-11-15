@@ -7,7 +7,7 @@
     <title>E-U Translator</title>
 
     <!-- Favicon -->
-     <link rel="shortcut icon" href="logo.jpg" type="image/x-icon">
+    <link rel="icon" href="images/logo.jpg">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
@@ -35,14 +35,15 @@
 
 <body class="bg-gray-50 min-h-screen flex flex-col items-center">
 
-  <!-- ===== NAVBAR ===== -->
+  <!-- =================== NAVBAR ==================== -->
+
   <nav class="w-full flex items-center justify-between bg-white shadow-md px-6 py-2">
 
     <div class="text-gray-600 text-[22px] cursor-pointer">
         <i class="fa-solid fa-bars-staggered"></i>
     </div>
     <div class="flex items-center space-x-1 cursor-pointer">
-        <img class="w-20" src="logo.jpg" alt="">
+        <img class="w-20" src="images/logo.jpg" alt="">
         <p class="text-blue-600 text-lg font-bold">
         <span class="text-red-600">E <i class="fa-solid fa-arrow-right"></i> U</span> TRANSLATOR</p>
     </div>
@@ -52,44 +53,53 @@
 
   </nav>
 
-  <!-- ===== TOP NAV BUTTONS ===== -->
+  <!-- ==================== TOP NAV BUTTONS ===================== -->
+
   <div class="flex items-center bg-white border border-gray-300 shadow-md rounded-md my-10 overflow-hidden">
       
-    <button class="px-6 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600 cursor-pointer">Text</button>
-    <button class="px-6 py-2 text-sm font-medium text-gray-600 cursor-not-allowed">Images</button>
-    <button class="px-6 py-2 text-sm font-medium text-gray-600 cursor-not-allowed">Documents</button>
-    <button class="px-6 py-2 text-sm font-medium text-gray-600 cursor-not-allowed">Websites</button>
+    <button id="txtSectTab" data-target="txtSection" class="px-6 py-2 text-sm font-medium text-blue-600 border-b-2 border-blue-600 hover:cursor-pointer">
+    Text</button>
+    <button id="imgSectTab" data-target="imgSection" class="px-6 py-2 text-sm font-medium text-gray-600 hover:cursor-pointer">
+    Images</button>
+    <button id="documSectTab" data-target="documSection" class="px-6 py-2 text-sm font-medium text-gray-600 hover:cursor-pointer">
+    Documents</button>
+    <button id="webSectTab" data-target="webSection" class="px-6 py-2 text-sm font-medium text-gray-600 hover:cursor-pointer">
+    Websites</button>
   
   </div>
 
-  <!-- ===== LANGUAGE BAR ===== -->
-  <div class="flex items-center justify-between w-full max-w-5xl mb-0">
+  <!-- =================== LANGUAGE BAR ===================== -->
 
-    <div class="flex items-center space-x-3">
-      <button id="leftEng" class="text-blue-600 text-[15px] font-semibold border-b-2 border-blue-600 pb-1 cursor-pointer">English</button>
-      <button id="leftUr" class="text-gray-600 text-[15px] cursor-pointer">Urdu</button>
-      <button class="text-gray-600 text-[15px] cursor-not-allowed">Other Languages</button>
+  <div class="flex items-center justify-between w-[78%] max-w-auto">
+
+    <div class="flex items-center space-x-4">
+      <button id="leftEng" class="text-blue-600 text-[15px] font-semibold border-b-2 border-blue-600 pb-2 cursor-pointer">English</button>
+      <button id="leftUr" class="text-gray-600 text-[15px] cursor-pointer pb-2">Urdu</button>
+      <button class="text-gray-600 text-[15px] cursor-not-allowed pb-2">Other Languages</button>
     </div>
 
     <div id="switchArrow" class="text-gray-600 text-lg font-semibold cursor-pointer">
       <i class="fa-solid fa-right-left"></i>
     </div>
 
-    <div class="flex items-center space-x-3">
-      <button id="rightUr" class="text-blue-600 text-[15px] font-semibold border-b-2 border-blue-600 pb-1 cursor-pointer">Urdu</button>
-      <button id="rightEng" class="text-gray-600 text-[15px] cursor-pointer">English</button>
-      <button class="text-gray-600 text-[15px] cursor-not-allowed">Other Languages</button>
+    <div class="flex items-center space-x-4">
+      <button id="rightUr" class="text-blue-600 text-[15px] font-semibold border-b-2 border-blue-600 pb-2 cursor-pointer">Urdu</button>
+      <button id="rightEng" class="text-gray-600 text-[15px] cursor-pointer pb-2">English</button>
+      <button class="text-gray-600 text-[15px] cursor-not-allowed pb-2">Other Languages</button>
     </div>
 
   </div>
 
-  <!-- ===== TRANSLATION BOXES ===== -->
-  <div class="flex w-full max-w-5xl bg-white rounded-lg shadow-md overflow-hidden border border-gray-300">
+  <!-- =================== TRANSLATION SECTIONS ======================= -->
+
+  <!-- ----------- TEXT SECTION ------------ -->
+
+  <div id="txtSection" class="flex w-4/5 mx-auto bg-white rounded-lg shadow-md overflow-hidden border border-gray-300">
     
     <!-- Left Box -->
     <div class="w-1/2 border-r border-gray-300">
 
-      <textarea id="userTranlTxt" class="w-full h-50 p-4 text-gray-700 focus:outline-none resize-none"
+      <textarea id="userTranlTxt" class="w-full h-55 p-4 text-gray-700 focus:outline-none resize-none"
         placeholder="Enter text"></textarea>
 
       <div class="flex justify-end items-center space-x-2 px-5 py-2 border-t border-gray-200 text-sm text-gray-500">
@@ -109,27 +119,111 @@
 
   </div>
 
-  <!-- ===== BOTTOM ICONS ===== -->
+  <!-- ----------- IMAGE UPLOAD SECTION ------------ -->
+
+  <div id="imgSection" class="hidden bg-white w-4/5 mx-auto p-10 rounded-xl shadow-sm border border-gray-200 flex justify-between items-center">
+    
+    <!-- Left -->
+    <div class="w-1/2 flex flex-col items-center ">
+
+      <label class="w-[275px] h-auto hover:cursor-pointer">
+        <img src="images/drag_and_drop.png" alt="">
+        <input type="file" class="hidden">
+      </label>
+      <p class="text-gray-500 text-[22px] mt-5 font-semibold">Drag and drop</p>
+
+    </div>
+
+    <!-- Divider -->
+    <div class="w-px h-40 bg-gray-200"></div>
+
+    <!-- Right -->
+    <div class="w-1/2 flex flex-col items-center space-y-3">
+
+      <p class="text-gray-600 font-semibold mt-4">
+        Or choose a file
+      </p>
+      
+      <button class="w-70 bg-blue-600 text-white px-6 py-2.5 rounded-sm text-sm font-semibold hover:cursor-pointer hover:bg-blue-700">
+        Browse your files
+      </button>
+
+      <button class="w-70 text-blue-600 border border-gray-300 px-6 py-2.5 rounded-sm text-sm font-semibold hover:cursor-pointer hover:bg-gray-100">
+        Paste from clipboard
+      </button>
+
+      <p class="text-gray-600 text-[13px] font-medium mt-4">
+        Supported file types: <b>.jpg, .jpeg, .png, .webp</b>
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- ----------- DOCUMENT UPLOAD SECTION ------------ -->
+
+  <div id="documSection" class="hidden bg-white w-4/5 mx-auto p-10 rounded-xl shadow-sm border border-gray-200 flex justify-between items-center">
+    
+    <!-- Left -->
+    <div class="w-1/2 flex flex-col items-center ">
+
+      <label class="w-[275px] h-auto hover:cursor-pointer">
+        <img src="images/drag_and_drop.png" alt="">
+        <input type="file" class="hidden">
+      </label>
+      <p class="text-gray-500 text-[22px] mt-5 font-semibold">Drag and drop</p>
+
+    </div>
+
+    <div class="w-px h-40 bg-gray-200"></div>
+
+    <!-- Right -->
+    <div class="w-1/2 flex flex-col items-center space-y-3">
+
+      <p class="text-gray-600 font-semibold mt-4">
+        Or choose a file
+      </p>
+
+      <button class="w-70 bg-blue-600 text-white px-6 py-2.5 rounded-sm text-sm font-semibold hover:cursor-pointer hover:bg-blue-700">
+        Browse your files
+      </button>
+
+      <p class="text-gray-600 text-[13px] font-medium mt-4">
+        Supported file types: <b>.docx, .pdf, .pptx, .xlsx</b>
+      </p>
+
+    </div>
+
+  </div>
+
+  <!-- ----------- WEBSITE INPUT SECTION ------------ -->
+
+  <div id="webSection" class="hidden flex justify-center bg-white w-4/5 mx-auto px-12 py-20 rounded-xl shadow-sm border border-gray-200 space-x-2">
+    
+    <input type="text" placeholder="Website"
+    class="placeholder:text-[16px] placeholder:text-gray-400 w-140 border border-gray-400 rounded-md px-4 py-2 tracking-normal font-medium focus:ring-2 focus:ring-blue-400 focus:outline-none">
+    <button class="bg-blue-600 text-white text-[21px] rounded-full px-4 py-2.5 hover:bg-blue-700 hover:cursor-pointer">
+    ➜</button>
+
+  </div>
+
+  <!-- ======================= BOTTOM ICONS ========================= -->
+
   <div class="flex justify-center gap-16 mt-15 text-gray-600 text-sm">
 
-    <div class="flex flex-col items-center">
+    <div id="historyIcon" class="flex flex-col items-center">
 
-      <div class="text-xl mb-1 border border-gray-300 rounded-full p-3.5 cursor-not-allowed">
-        <svg width="26" height="26" viewBox="0 0 24 24" focusable="false" class="">
-          <path d="M4 4v2.01C5.83 3.58 8.73 2 12.01 2 17.53 2 22 6.48 22 12s-4.47 10-9.99 10C6.48 22 2 17.52 2 12h2c0 4.42 3.58 8 8 8s8-3.58 8-8-3.58-8-8-8C9.04 4 6.47 5.61 5.09 8H8v2H2V4h2z"></path>
-          <path d="M13 12V6h-2v7l4.97 3.49 1.26-1.55z"></path>
-        </svg>
+      <div class="text-xl mb-1 border border-gray-300 rounded-full p-3.5 hover:cursor-pointer">
+        <i class="fa-solid fa-rotate-left"></i>
       </div>
       <span>History</span>
       
     </div>
 
-    <div class="flex flex-col items-center">
+    <div id="savedIcon" class="flex flex-col items-center">
 
-      <div class="text-xl mb-1 border border-gray-300 rounded-full p-3.5 cursor-not-allowed">
-        <svg width="26" height="26" viewBox="0 0 24 24" focusable="false" class="">
-          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21 12 17.27z"></path>
-        </svg>
+      <div class="text-xl mb-1 border border-gray-300 rounded-full px-3.5 py-3 hover:cursor-pointer">
+        <i class="fa-solid fa-star"></i>
       </div>
       <span>Saved</span>
 

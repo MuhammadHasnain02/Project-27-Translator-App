@@ -1,5 +1,15 @@
 // -------------<<< Elements >>>---------------
 
+let txtSectTab = document.getElementById("txtSectTab")
+let imgSectTab = document.getElementById("imgSectTab")
+let documSectTab = document.getElementById("documSectTab")
+let webSectTab = document.getElementById("webSectTab")
+
+let txtSection = document.getElementById("txtSection")
+let imgSection = document.getElementById("imgSection")
+let documSection = document.getElementById("documSection")
+let webSection = document.getElementById("webSection")
+
 let userTranlTxt = document.getElementById("userTranlTxt")
 let translatedTxt = document.getElementById("translatedTxt")
 let charCount = document.getElementById("charCount")
@@ -11,6 +21,34 @@ let rightUr = document.getElementById("rightUr")
 
 let switchArrow = document.getElementById("switchArrow")
 let currentLang = "en"
+
+
+// -------------<<< toggle Section Activated >>>---------------
+
+// CONTENT BOXES & TAB BUTTONS
+let sectionsTab = [txtSectTab, imgSectTab, documSectTab, webSectTab];
+let sections = [txtSection, imgSection, documSection, webSection];
+
+function activateSect(tab) {
+
+    sectionsTab.forEach(sec => {
+        sec.classList.remove("text-blue-600", "border-b-2", "border-blue-600");
+        sec.classList.add("text-gray-600");
+    });
+
+    sections.forEach(content => content.classList.add("hidden"));
+
+    tab.classList.remove("text-gray-600");
+    tab.classList.add("text-blue-600", "border-b-2", "border-blue-600");
+
+    let contentId = tab.dataset.target;
+    document.getElementById(contentId).classList.remove("hidden");
+
+}
+
+sectionsTab.forEach(tab => {
+    tab.addEventListener("click", () => activateSect(tab));
+});
 
 // -------------<<< Translation Logic >>>---------------
 
@@ -34,7 +72,7 @@ async function translateText(text) {
         console.error("Translate error:", err);
         return null;
     }
- 
+
 }
 
 // -------------<<< 5000 Characters Handling >>>---------------
@@ -42,7 +80,12 @@ async function translateText(text) {
 userTranlTxt.addEventListener("input" , () => {
 
     let txt = userTranlTxt.value.trim()
-    if (txt.length > 5000) txt = txt.slice(0 , 5000)
+    txt.length >= 5000 ? charCount.classList.add("text-red-500") : charCount.classList.remove("text-red-500")
+
+    if (txt.length > 5000) {
+        txt = txt.slice(0 , 5000)
+        userTranlTxt.value = txt
+    }
 
     charCount.innerText = txt.length
     translateText(txt || "Enter Sentence")
@@ -89,3 +132,24 @@ rightEng.addEventListener("click", () => setActive("ur"));
 // ----------<<< Switch Arrow Click >>>------------
 
 switchArrow.addEventListener("click", () => currentLang === "en" ? setActive("ur") : setActive("en"))
+
+// ----------<<< Saved & History Button >>>------------
+
+let savedIcon = document.getElementById("savedIcon")
+let historyIcon = document.getElementById("historyIcon")
+
+function toggleBlueGray(icon) {
+
+    if (icon.classList.contains("text-blue-500")) {
+        icon.classList.remove("text-blue-500");
+        icon.classList.add("text-gray-500");
+
+    } else {
+        icon.classList.remove("text-gray-500");
+        icon.classList.add("text-blue-500");
+    }
+
+}
+
+savedIcon.addEventListener("click" , () => toggleBlueGray(savedIcon))
+historyIcon.addEventListener("click" , () => toggleBlueGray(historyIcon))
