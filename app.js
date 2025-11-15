@@ -52,17 +52,6 @@ sectionsTab.forEach(tab => {
     tab.addEventListener("click", () => activateSect(tab));
 });
 
-// LOAD SAVED TAB
-window.addEventListener("load" , () => {
-
-    let savedTab = localStorage.getItem("activeTab")
-    if (savedTab) {
-        let tab = document.getElementById(savedTab);
-        if (tab) activateSect(tab)
-    }
-
-})
-
 // -------------<<< Translation Logic >>>---------------
 
 async function translateText(text) {
@@ -102,6 +91,24 @@ userTranlTxt.addEventListener("input" , () => {
 
     charCount.innerText = txt.length
     translateText(txt || "Enter Sentence")
+    localStorage.setItem("translationText", txt);
+
+})
+
+// -------------<<< LOAD SAVED Data >>>---------------
+
+window.addEventListener("load" , () => {
+
+    let savedTab = localStorage.getItem("activeTab")
+    let savedText = localStorage.getItem("translationText");
+
+    if (savedTab) {
+        let tab = document.getElementById(savedTab);
+        if (tab) activateSect(tab)
+    }
+    if (savedText) {
+        userTranlTxt.value = savedText;
+    }
 
 })
 
